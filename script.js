@@ -5,13 +5,16 @@
   const pageName = location.pathname.split('/').pop().replace(/\.html$/i, '') || 'lect_2';
   const AUDIO_DIR = `audio_${pageName}`;
 
+  let SPOKEN_NOTES = [];
   let SUBTITLE_NOTES = [];
 
   // Підвантажуємо тексти субтитрів та резервної озвучки з папки відповідної лекції
   fetch(`${AUDIO_DIR}/notes.json`)
     .then(res => res.ok ? res.json() : [])
     .then(data => {
-      SUBTITLE_NOTES = data.subtitle || []     
+      //SUBTITLE_NOTES = data.subtitle || [] 
+      SPOKEN_NOTES = data.map(item => item.spoken || '');
+      SUBTITLE_NOTES = data.map(item => item.subtitle || '');    
     })
     .catch(() => { });
 
