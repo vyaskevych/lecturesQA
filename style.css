@@ -43,3 +43,72 @@
   .deck, .topbar, .progress { width: 98vw; }
   .brandmark .university-logo { width: 28px; height: 35px; }
 }
+
+
+/* --- ДОДАТКОВІ СТИЛІ: ВІДЖЕТ ВИКЛАДАЧА ТА АВТООЗВУЧКА --- */
+.presenter-pip {
+  position: absolute;
+  top: 1.35cqw;
+  right: 2.2cqw;
+  width: 7.4cqw;
+  height: 7.4cqw;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 0.24cqw solid var(--teal);
+  box-shadow: 0 6px 18px rgba(23, 50, 75, 0.22);
+  z-index: 20;
+  background: var(--surface);
+  cursor: grab;
+  user-select: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+.presenter-pip:active {
+  cursor: grabbing;
+}
+.presenter-pip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+}
+.presenter-pip.speaking {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 0.38cqw rgba(0, 130, 138, 0.26), 0 8px 22px rgba(23, 50, 75, 0.3);
+  animation: pip-pulse 1.6s infinite ease-in-out;
+}
+@keyframes pip-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+.utility.active-audio {
+  background: var(--teal);
+  color: white;
+  border-color: var(--teal-dark);
+}
+.utility.active-audio:hover {
+  background: var(--teal-dark);
+  color: white;
+}
+.speaker-subtitles {
+  position: absolute;
+  left: 4.1cqw;
+  right: 4.1cqw;
+  bottom: 5.4cqw;
+  background: rgba(23, 50, 75, 0.92);
+  color: #fff;
+  padding: 0.75cqw 1.2cqw;
+  border-radius: 8px;
+  font-size: 0.95cqw;
+  line-height: 1.42;
+  z-index: 18;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  display: none;
+  max-height: 8.5cqw;
+  overflow-y: auto;
+  border-left: 0.35cqw solid var(--orange);
+}
+.speaker-subtitles.visible {
+  display: block;
+}
